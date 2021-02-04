@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Issue_13645.Views.AboutPage"
+             xmlns:vm="clr-namespace:Issue_13645.ViewModels"
+             Title="{Binding Title}">
+
+    <Grid RowDefinitions="150, *, *">
+
+        <Grid ColumnDefinitions="*, *">
+            <Label Text="Index" />
+            <Label Grid.Column="1" Text="{Binding SelectedPosition}" />
+
+            <Label Grid.Row="1" Text="Letter" />
+            <Label Grid.Row="1"  Grid.Column="1" Text="{Binding SelectedLetter}" />
+        </Grid>
+
+
+        <Grid Grid.Row="1" ColumnDefinitions="*, 100, *" RowDefinitions="50, *">
+            <Label Text="Vertical Orientation" Grid.Column="1"/>
+
+            <CarouselView
+            Grid.Column="1" Grid.Row="1"
+            BackgroundColor="Black"
+            VerticalScrollBarVisibility="Never"
+            Loop="False"
+            Position="{Binding SelectedPosition}"
+            ItemsSource="{Binding Letters}"
+            CurrentItemChanged="CarouselView_CurrentItemChanged"
+            IsScrollAnimated="False">
+
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout
+                    SnapPointsType="MandatorySingle"
+                    SnapPointsAlignment="Center"
+                    Orientation="Vertical"
+                   />
+                </CarouselView.ItemsLayout>
+
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout HorizontalOptions="Center">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="CurrentItem">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="1.1" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="PreviousItem">
+                                        <VisualState.Setters>
+                                            <Setter Property="Opacity" Value="0.5" />
+                                            <Setter Property="Scale" Value="0.9" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="NextItem">
+                                        <VisualState.Setters>
+                                            <Setter Property="Opacity" Value="0.5" />
+                                            <Setter Property="Scale" Value="0.9" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="DefaultItem">
+                                        <VisualState.Setters>
+                                            <Setter Property="Opacity" Value="0.25" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Label Text="{Binding .}" TextColor="White"  FontSize="Title" HorizontalTextAlignment="Center">
+
+                            </Label>
+                        </StackLayout>
+
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </Grid>
+
+
+        <Grid Grid.Row="2" ColumnDefinitions="*, 100, *" RowDefinitions="50, *">
+             <Label Text="Horizontal Orientation"  Grid.Column="1"/>
+            <CarouselView
+
+                Grid.Column="1" Grid.Row="1"
+                BackgroundColor="Black"
+                VerticalScrollBarVisibility="Never"
+                Loop="False"
+                Position="{Binding SelectedPosition}"
+                ItemsSource="{Binding Letters}"
+                CurrentItemChanged="CarouselView_CurrentItemChanged"
+                IsScrollAnimated="False">
+
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout
+                    SnapPointsType="MandatorySingle"
+                    SnapPointsAlignment="Center"
+                    Orientation="Horizontal"
+                      />
+                </CarouselView.ItemsLayout>
+
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout HorizontalOptions="Center">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="CurrentItem">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="1.1" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="PreviousItem">
+                                        <VisualState.Setters>
+                                            <Setter Property="Opacity" Value="0.5" />
+                                            <Setter Property="Scale" Value="0.9" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="NextItem">
+                                        <VisualState.Setters>
+                                            <Setter Property="Opacity" Value="0.5" />
+                                            <Setter Property="Scale" Value="0.9" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="DefaultItem">
+                                        <VisualState.Setters>
+                                            <Setter Property="Opacity" Value="0.25" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Label Text="{Binding .}" TextColor="White"  FontSize="Title" HorizontalTextAlignment="Center">
+
+                            </Label>
+                        </StackLayout>
+
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </Grid>
+    </Grid>
+</ContentPage>
